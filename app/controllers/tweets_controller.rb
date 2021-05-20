@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.all.order(created_at: :desc)
+    @tweets = Tweet.includes(:tags).all.order(created_at: :desc)
+    # Tweetモデルのアソシエーションhas_manyの関係から「tag」ではなく「tags」と記述する
   end
 
   def new
